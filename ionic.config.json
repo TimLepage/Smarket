@@ -1,0 +1,7 @@
+{
+  "name": "Smarket",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

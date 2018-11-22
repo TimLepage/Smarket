@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="currentTab == 'List'">Liste</ion-title>
+    <ion-title *ngIf="currentTab == 'Cart'">Panier</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="currentTab">
+      <ion-segment-button value="List">
+        <ion-icon name="list" item-start color="primary"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Cart">
+        <ion-icon name="cart" item-start color="primary"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-fab center top>
+         <ion-badge color="primary">${{totalPrice.toFixed(2)}}</ion-badge>
+  </ion-fab>
+
+  <ion-fab center bottom *ngIf="currentTab == 'List'">
+    <button ion-fab (click)="doPrompt()">
+      <ion-icon name="add" item-start color="white"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list>
+    <ion-item *ngFor="let item of getListToDisplay()">
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-9>
+            <button class='button'>
+              <ion-icon style="float:left; padding:10px" name="pin" color="primary"></ion-icon>
+              <label style="float:left; padding:10px">{{ item.name }}</label>
+              <label *ngIf="currentTab == 'Cart'" style="float:right; padding:10px">${{ item.price }}</label>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button *ngIf="currentTab == 'List'" (click)="onAddToCart(item)" style="float:right; padding:10px">
+              <ion-icon name="cart" color="primary"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button (click)="onRemove(item)" style="float:right; padding:10px">
+              <ion-icon name="trash" color="primary"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>
