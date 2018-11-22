@@ -3,4 +3,25 @@
           <h1 id="waitingScreen"> Merci de patienter pendant la recherche de l'article </h1>
           <img src="../../assets/imgs/loading.gif">
     </ion-card>
+
+    <ion-list>
+
+      <ion-item>
+        <ion-label fixed>Number</ion-label>
+        <ion-input type="text" value="" [(ngModel)]="scannedString"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <button ion-button (click)="scan()">Scan</button>
+      </ion-item>
+
+      <ion-item>
+        <button ion-button (click)="request(scannedString)">Add</button>
+      </ion-item>
+
+      <ion-item>
+        <button ion-button (click)="request('3274080005003')">Request</button>
+      </ion-item>
+
+    </ion-list>
 </ion-content>
